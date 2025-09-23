@@ -113,5 +113,14 @@ dataframe['Average'] = dataframe[['Math','Electronics','GEAS', 'Communication']]
 Mindy = dataframe[(dataframe['Hometown'] == 'Mindanao') & (dataframe['Gender'] == 'Female') & (dataframe['Average'] >= 55)][['Name', 'Track', 'Electronics', 'Average']]  
 Mindy #This locates the variables that apply to given condition inside the dataframe [] and outputs the specific column which was categorized when you input it.
 #This also shows the average.
+
+TrackAve = dataframe.groupby('Track')['Average'].mean() #This groupby groups the certain data by what variable inputed.
+plt.figure(figsize=(n,n)) #This inputs the size of the graph.
+plt.title('') #This places the titles of the graph.
+plt.ylabel('') #This places the label on the y axis.
+plt.xlabel('') #This place the label on the x axis.
+plt.xticks(rotation = 45) #This rotates the label horizontally.
+plt.tight_layout() #This shows the layout.
+plt.show() #This shows or outputs the graph.
 ```
 
