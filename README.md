@@ -119,7 +119,7 @@ plt.figure(figsize=(n,n)) #This inputs the size of the graph.
 plt.title('') #This places the titles of the graph.
 plt.ylabel('') #This places the label on the y axis.
 plt.xlabel('') #This place the label on the x axis.
-plt.xticks(rotation = 45) #This rotates the label horizontally.
+plt.xticks(rotation = 45) #This rotates the tick labels on the x-axis by 45 degrees so the names won’t overlap.
 plt.tight_layout() #This shows the layout.
 plt.show() #This shows or outputs the graph.
 ```
