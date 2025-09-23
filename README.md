@@ -4,123 +4,120 @@
 This Proramming Assignment contains Python Code solution using Data Wrangling and Data Visualization technique with storytelling. It includes analization of data and presents different (i) data frames; and (ii) visuals using the given datasets. This is made by Marc Dominic C. Corral from 2-ECE-A as a programming assignment for ECE 2112 - Advance Computer Programming and Algorithms course.
 
 # ECE BOARD EXAM PROBLEM
-This problem involves creating data frames and visualizations that shows how the different features contributes to average grade. It also provides answer to the question "Does chosen track in college, gender, or hometown contributes to a higher average score?" using the bar graphs in Data Visualization.
+<h6>This problem involves creating data frames and visualizations that shows how the different features contributes to average grade. It also provides answer to the question "Does chosen track in college, gender, or hometown contributes to a higher average score?" using the bar graphs in Data Visualization.</h6>
 
-# Python Code:
+1.) A Python script/code where by using data wrangling and visualization techniques, we make dataframes on the file 'board2.csv' based on the given conditions:
 ```python
-import pandas as pd
-import matplotlib.pyplot as plt
+import pandas as pd #This imports Pandas Library into the Python Code.
 
 dataframe = pd.read_excel('board2.xlsx')
-dataframe
+dataframe  #This reads the excel file "board2.xlsx"
+```
+---
+FIRST CONDITION:
 
-Vis = dataframe[(dataframe['Hometown'] == 'Visayas') & (dataframe['Math']<70)][['Name', 'Gender', 'Track', 'Math']]
-Vis
+<h6>Using the filename INSTRU, we will construct a dataframe where the displayed values are "Track" set as "Instrumentation", "Hometown" set as "Luzon", and their "Electronics" score must be greater than 70. Then the values that are qualified in the previous conditions, will displays the values of the columns "Name", "GEAS", and "Electronics".</h6> 
 
-Instru = dataframe[(dataframe['Track'] == 'Instrumentation') & (dataframe['Hometown'] == 'Luzon') & (dataframe['Electronics']>70)][['Name', 'GEAS', 'Electronics']]
+```python
+Instru = dataframe[(dataframe['Track'] == 'Instrumentation') & #This locates all the values with "Instrumrntation" in the "Hometown" column.
+        (dataframe['Hometown'] == 'Luzon') & #This locates all the values with "Luzon" in the "Hometown" column.
+        (dataframe['Electronics']>70)] #This locates all the values located in the "Electronics" column higher than 70.
+        [['Name', 'GEAS', 'Electronics']] #This displays only the columns inside the [], which fits the conditions above.
 Instru
-
-dataframe['Average'] = dataframe[['Math','Electronics','GEAS', 'Communication']].mean(axis=1)
-
-Mindy = dataframe[(dataframe['Hometown'] == 'Mindanao') & (dataframe['Gender'] == 'Female') & (dataframe['Average'] >= 55)][['Name', 'Track', 'Electronics', 'Average']]
-Mindy
-
-plt.figure(figsize = (15, 10))
-
-plt.subplot(2, 2, 1)
-TrackAve = dataframe.groupby('Track')['Average'].mean()
-plt.bar(TrackAve.index, TrackAve.values)
-plt.title('Average Grade by Track')
-plt.ylabel('Average Grade')
-plt.xticks(rotation = 45)
-
-plt.tight_layout()
-plt.show()
-
-plt.subplot(2, 2, 2)
-GenderAve = dataframe.groupby('Gender')['Average'].mean()
-plt.bar(GenderAve.index, GenderAve.values)
-plt.title('Average Grade by Gender')
-plt.ylabel('Average Grade')
-
-plt.tight_layout()
-plt.show()
-
-plt.subplot(2, 2, 3)
-HometownAve = dataframe.groupby('Hometown')['Average'].mean()
-plt.bar(HometownAve.index, HometownAve.values)
-plt.title('Average Grade by Hometown')
-plt.ylabel('Average Grade')
-plt.xticks(rotation = 45)
-
-plt.tight_layout()
-plt.show()
-
-plt.subplot(2, 2, 4)
-Subjects = ['Math', 'GEAS', 'Electronics', 'Communication']
-SubjectMeans = [dataframe[subject].mean() for subject in Subjects]
-plt.bar(Subjects, SubjectMeans)
-plt.title('Average Scores by Subjects')
-plt.ylabel('Averge Score')
-plt.xticks(rotation = 45)
-
-plt.tight_layout()
-plt.show()
 ```
 
-# Outputs:
+<h6>The output for this condition should look like this with these values:</h6>
+<img width="261" height="179" alt="image" src="https://github.com/user-attachments/assets/75671ce2-5cd6-48e3-94d1-edad9a471059" />
 
-Output for the dataframe:  Vis = [“Name”, “Gender”, “Track”, “Math<70”]; hometown is constant as Visayas
+---
+SECOND CONDITION:
 
-<img width="431" height="175" alt="image" src="https://github.com/user-attachments/assets/fdd88fe7-ebc1-4884-a073-bcaa5154c964" />
+<h6>Using the filename MINDY, we will create a dataframe where the values displayed has their "Gender" set as 'Female', "Hometown" set as 'Mindanao', and their "Average" score is greater or equal to 55. The values that are qualified with the previous conditions displays the values of the columns "Name", "Track", "Electronics", and "Average".</h6> 
 
-Output for the dataframe: Instru = [“Name”, “GEAS”, “Electronics >70”]; where track is constant as
-Instrumentation and hometown Luzon
-
-<img width="330" height="159" alt="image" src="https://github.com/user-attachments/assets/88a0f7b0-9d8a-4227-9a47-0fdad4ec6d45" />
-
-Output for the dataframe:  Mindy = [ “Name”, “Track”, “Electronics”, “Average >=55”]; where hometown is
-constant as Mindanao and gender Female
-
-<img width="490" height="237" alt="image" src="https://github.com/user-attachments/assets/b39d5115-ec19-42b5-8916-b4d4aefc3dce" />
-
-# Data Visualizations:
-
-<img width="1000" height="710" alt="image" src="https://github.com/user-attachments/assets/8bbc52ab-07fb-4818-b6fa-6fe83e0332bf" />
-
-<img width="474" height="333" alt="image" src="https://github.com/user-attachments/assets/27a559c8-bc7c-4cf9-a7dd-29fff0e5ddc8" />
-
-<img width="454" height="360" alt="image" src="https://github.com/user-attachments/assets/71a68c88-e681-4e18-973f-b37905fa2fe2" />
-
-<img width="445" height="383" alt="image" src="https://github.com/user-attachments/assets/4abab3dc-5b26-44e7-b039-f4d575070ad2" />
-
-# Code Explanation:
 ```python
-import pandas as pd  #This imports pandas into the Python code.
-import matplotlib.pyplot as plt #This imports matplotlib.pyplot into the Python Code. 
-
-dataframe = pd.read_excel('board2.xlsx').
-dataframe  #This reads the excel file "board2.xlsx"
-
-Vis = dataframe[(dataframe['Hometown'] == 'Visayas') & (dataframe['Math']<70)][['Name', 'Gender', 'Track', 'Math']]
-Vis  #This locates the variables that apply to given condition inside the dataframe [] and outputs the specific column which was categorized when you input it.
-
-Instru = dataframe[(dataframe['Track'] == 'Instrumentation') & (dataframe['Hometown'] == 'Luzon') & (dataframe['Electronics']>70)][['Name', 'GEAS', 'Electronics']] 
-Instru #This locates the variables that apply to given condition inside the dataframe [] and outputs the specific column which was categorized when you input it.
+#First we must make a new column called "Average" which displays the Average scores of all the subjects in the dataframe.
 
 dataframe['Average'] = dataframe[['Math','Electronics','GEAS', 'Communication']].mean(axis=1) #This gets the mean of all inside the dataframe [] and place it in columns or axis = 1.
 
-Mindy = dataframe[(dataframe['Hometown'] == 'Mindanao') & (dataframe['Gender'] == 'Female') & (dataframe['Average'] >= 55)][['Name', 'Track', 'Electronics', 'Average']]  
-Mindy #This locates the variables that apply to given condition inside the dataframe [] and outputs the specific column which was categorized when you input it.
-#This also shows the average.
-
-TrackAve = dataframe.groupby('Track')['Average'].mean() #This groupby groups the certain data by what variable inputed.
-plt.figure(figsize=(n,n)) #This inputs the size of the graph.
-plt.title('') #This places the titles of the graph.
-plt.ylabel('') #This places the label on the y axis.
-plt.xlabel('') #This place the label on the x axis.
-plt.xticks(rotation = 45) #This rotates the tick labels on the x-axis by 45 degrees so the names won’t overlap.
-plt.tight_layout() #This shows the layout.
-plt.show() #This shows or outputs the graph.
+Mindy = dataframe[(dataframe['Hometown'] == 'Mindanao') & #This locates all the values with "Mindanao" in the "Hometown" column.
+        (dataframe['Gender'] == 'Female') & #This loactes all the values with "Female" in the "Gender" column.
+        (dataframe['Average'] >= 55)] #This locates all the values that are greater than or equal to 55 in the "Average" column, which is the new column we make.
+        [['Name', 'Track', 'Electronics', 'Average']] #This displays only the columns inside the [], which fits the conditions above.
+Mindy
 ```
 
+<h6>The output for this condition should look like this with these values:</h6>
+<img width="418" height="239" alt="image" src="https://github.com/user-attachments/assets/389d6b17-44d6-4ee1-b62a-54598f251bfb" />
+
+---
+2.) A Python script/code that creates a data visualization that shows how the different features contributes to average grade. Does chosen track in college, gender, or hometown contributes to a higher average score?
+
+```python
+import matplotlib.pyplot as plt #This imports MatPlot Library into the Python Code for Data Visualization. 
+```
+
+---
+The Average Grade by the students by "Track" 
+```python
+plt.figure(figsize = (15, 10)) #This inputs the size of the graph.
+
+plt.subplot(2, 2, 1) #This prepares the subplot inside the figure.
+TrackAve = dataframe.groupby('Track')['Average'].mean() #This groups the dataframe by the values in the "Track" column and calculates its mean.
+plt.bar(TrackAve.index, TrackAve.values) #This creates a Bar Graph, the x-axis is TrackAve.index (Track names) and the height of each bar is TrackAve.values (The computed mean grades).
+plt.title('Average Grade by Track') #This places "Average Grade by Track" as the title of the graph.
+plt.ylabel('Average Grade') #This places "Average Grade" as the label on the y axis.
+plt.xlabel('Track') #This places "Track" as the label on the x axis.
+plt.xticks(rotation = 45) #This rotates the tick labels on the x-axis by 45 degrees so the names won’t overlap.
+
+plt.show() #This shows the Bar Graph.
+```
+<h6>With the Python Script/Codes above, the Bar Graph for the Average Grade by the students by "Track" will be like this:</h6>
+<img width="756" height="646" alt="image" src="https://github.com/user-attachments/assets/053fca3a-30d0-4ac5-ac19-db57d448ed8c" />
+
+---
+The Average Grade by the students by "Gender" 
+```python
+plt.subplot(2, 2, 2) #This prepares the subplot inside the figure.
+GenderAve = dataframe.groupby('Gender')['Average'].mean() #This groups the dataframe by the values in the "Gender" column and calculates its mean.
+plt.bar(GenderAve.index, GenderAve.values) #This creates a Bar Graph, the x-axis is GenderAve.index (Male and Female) and the height of each bar is GenderAve.values (The computed mean grades).
+plt.title('Average Grade by Gender') #This places "Average Grade by Gender" as the title of the graph.
+plt.ylabel('Average Grade') #This places "Average Grade" as the label on the y axis.
+plt.xlabel('Gender') #This places "Gender" as the label on the x axis.
+
+plt.show() #This shows the Bar Graph.
+```
+<h6>With the Python Script/Codes above, the Bar Graph for the Average Grade by the students by "Gender" will be like this:</h6>
+<img width="371" height="319" alt="image" src="https://github.com/user-attachments/assets/3c341c7d-01fb-45f0-a15c-0fff209459ca" />
+
+---
+The Average Grade by the students by "Hometown" 
+```python
+plt.subplot(2, 2, 3) #This prepares the subplot inside the figure.
+HometownAve = dataframe.groupby('Hometown')['Average'].mean() #This groups the dataframe by the values in the "Hometown" column and calculates its mean.
+plt.bar(HometownAve.index, HometownAve.values) #This creates a Bar Graph, the x-axis is HometownAve.index (Hometown names) and the height of each bar is HometownAve.values (The computed mean grades).
+plt.title('Average Grade by Hometown') #This places "Average Grade by Hometown" as the title of the graph.
+plt.ylabel('Average Grade') #This places "Average Grade" as the label on the y axis.
+plt.xlabel('Hometown') #This places "Hometown" as the label on the x axis.
+plt.xticks(rotation = 45) #This rotates the tick labels on the x-axis by 45 degrees so the names won’t overlap.
+
+plt.show() #This shows the Bar Graph.
+```
+<h6>With the Python Script/Codes above, the Bar Graph for the Average Grade by the students by "Hometown" will be like this:</h6>
+<img width="383" height="376" alt="image" src="https://github.com/user-attachments/assets/d4735846-0898-41d3-ba23-d9af9fc29b9a" />
+
+---
+The Average Grade by the students by "Subjects" 
+```python
+plt.subplot(2, 2, 4) #This prepares the subplot inside the figure.
+Subjects = ['Math', 'GEAS', 'Electronics', 'Communication'] #This creates a list of column names from the datarame.
+SubjectMeans = [dataframe[subject].mean() for subject in Subjects] #This uses a list comprehension to calculate the mean value for each subject column.
+plt.bar(Subjects, SubjectMeans) #This creates a Bar Graph, the x-axis is the Subjetcs and the height of each bar is the mean grades from SubjectMeans.
+plt.title('Average Grade by Subjects') #This places "Average Grade by Subjects" as the title of the graph.
+plt.ylabel('Averge Grade') #This places "Average Grade" as the label on the y axis.
+plt.xlabel('Subjects') #This places "Subjects" as the label on the x axis.
+plt.xticks(rotation = 45) #This rotates the tick labels on the x-axis by 45 degrees so the names won’t overlap.
+
+plt.show() #This shows the Bar Graph.
+```
+<h6>With the Python Script/Codes above, the Bar Graph for the Average Grade by the students by "Subjects" will be like this:</h6>
+<img width="390" height="415" alt="image" src="https://github.com/user-attachments/assets/c9b914d2-daa2-4603-a8b3-aaa7e51a42db" />
