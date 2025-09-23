@@ -6,6 +6,7 @@ This Proramming Assignment contains Python Code solution using Data Wrangling an
 # ECE BOARD EXAM PROBLEM
 <h6>This problem involves creating data frames and visualizations that shows how the different features contributes to average grade. It also provides answer to the question "Does chosen track in college, gender, or hometown contributes to a higher average score?" using the bar graphs in Data Visualization.</h6>
 
+---
 1.) A Python script/code where by using data wrangling and visualization techniques, we make dataframes on the file 'board2.csv' based on the given conditions:
 ```python
 import pandas as pd #This imports Pandas Library into the Python Code.
